@@ -97,6 +97,9 @@ curl --location --request PUT 'http://localhost:8080/v1/users/8ab71cd7-473b-4fff
 }'
 ```
 
+> Para facilitar las pruebas se agregó una colección Postman con los endpoints de prueba [sermaluc-bci-challenge.postman_collection.json](sermaluc-bci-challenge.postman_collection.json).
+> <br/>Se debe importar en Postman desde File -> Import
+
 # Diagrama de la solución
 
 ```mermaid

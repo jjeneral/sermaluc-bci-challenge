@@ -1,0 +1,203 @@
+{
+  "info": {
+    "_postman_id": "33415c99-e2ba-438c-a779-203f3e657577",
+    "name": "sermaluc-bci-challenge",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "4018850"
+  },
+  "item": [
+    {
+      "name": "Crear usuario",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"Juan Rodriguez\",\n    \"email\": \"juan@rodriguez.org\",\n    \"password\": \"hunter2\",\n    \"phones\": [\n        {\n            \"number\": \"1234567\",\n            \"citycode\": \"1\",\n            \"countrycode\": \"57\"\n        }\n    ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/v1/users",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "v1",
+            "users"
+          ]
+        },
+        "description": "Generated from cURL: curl --location 'http://localhost:8080/v1/users' \\\n--header 'Content-Type: application/json' \\\n--data-raw '{\n    \"name\": \"Juan Rodriguez\",\n    \"email\": \"juan@rodriguez.org\",\n    \"password\": \"hunter2\",\n    \"phones\": [\n        {\n            \"number\": \"1234567\",\n            \"citycode\": \"1\",\n            \"countrycode\": \"57\"\n        }\n    ]\n}'"
+      },
+      "response": []
+    },
+    {
+      "name": "login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "var jsonData = pm.response.json();\r\npm.collectionVariables.set(\"token\", jsonData.token);\r\n\r\nconsole.log(\"Token guardado correctamente: \" + jsonData.token);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"email\": \"juan@rodriguez.org\",\n    \"password\": \"hunter2\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/v1/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "v1",
+            "auth",
+            "login"
+          ]
+        },
+        "description": "Generated from cURL: curl --location 'http://localhost:8080/v1/auth/login' \\\n--header 'Content-Type: application/json' \\\n--data-raw '{\n    \"email\": \"juan@rodriguez.org\",\n    \"password\": \"hunter2\"\n}'"
+      },
+      "response": []
+    },
+    {
+      "name": "Listar usuarios",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "var jsonData = pm.response.json();\r\npm.collectionVariables.set(\"userId\", jsonData[0].userId);\r\n\r\nconsole.log(\"userId de primer usuario guardado: \" + jsonData[0].userId);\r\n"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/v1/users",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "v1",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Recuperar primer usuario por id",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Juan Rodriguez updated\",\r\n    \"email\": \"juan@rodriguez.org\",\r\n    \"password\": \"hunter2updated\",\r\n    \"isactive\": true,\r\n    \"phones\": [\r\n        {\r\n            \"number\": \"1234567\",\r\n            \"citycode\": \"2\",\r\n            \"countrycode\": \"56\"\r\n        }\r\n    ]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/v1/users/{{userId}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "v1",
+            "users",
+            "{{userId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Actualizar primer usuario",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Juan Rodriguez updated\",\r\n    \"email\": \"juan@rodriguez.org\",\r\n    \"password\": \"hunter2updated\",\r\n    \"isactive\": true,\r\n    \"phones\": [\r\n        {\r\n            \"number\": \"1234567\",\r\n            \"citycode\": \"2\",\r\n            \"countrycode\": \"56\"\r\n        }\r\n    ]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/v1/users/{{userId}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "v1",
+            "users",
+            "{{userId}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "userId",
+      "value": ""
+    }
+  ]
+}
